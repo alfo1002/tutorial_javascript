@@ -3,11 +3,13 @@ const API_URL = "https://api.thedogapi.com/v1/breeds?limit=7";
 async function getRazas() {
     try {
         const response = await fetch(API_URL);
+        if (!response.ok) {
+            throw new Error("Error en solicitud a la API");
+        }
         const data = await response.json();
-        //data.forEach(raza => console.log(raza.name));
         return data;
     } catch (error) {
-        console.error("Error: ", error);
+        console.error("Error: ", error.message);
     }
 }
 
